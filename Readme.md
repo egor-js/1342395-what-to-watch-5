@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Egor Radaev](https://up.htmlacademy.ru/react/5/user/1342395).
-* Наставник: `Неизвестно`.
+* Наставник: [Александр Стариков](https://htmlacademy.ru/profile/id1152617).
 
 ---
 
