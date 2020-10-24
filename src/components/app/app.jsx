@@ -9,7 +9,7 @@ import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 
 const App = (props) => {
-  const { title, janre, releaseYear } = props;
+  const { title, genre, releaseYear } = props;
 
   return (
         <BrowserRouter>
@@ -17,7 +17,7 @@ const App = (props) => {
         <Route exact path="/">
           <WelcomeScreen
             title={title}
-            janre={janre}
+            genre={genre}
             releaseYear={releaseYear}
           />
         </Route>
@@ -27,7 +27,7 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList />
         </Route>
-        <Route exact path="/films/:id">
+        <Route exact path="/films1">
           <MoviePage />
         </Route>
         <Route exact path="/films/:id/review">
@@ -43,7 +43,7 @@ const App = (props) => {
 
 App.propTypes = {
   title: PropTypes.string.isRequired,
-  janre: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
   releaseYear: PropTypes.number.isRequired,
 };
 
