@@ -5,11 +5,21 @@ import {getYear} from "../../utils"
 
 const Main= (props) => {
   const {films} = props;
-  const activeIndex = 0;
-  const {title, genre, releaseDate} = films[activeIndex];
+  const activeIndex = 8;
+  const {title, genre, releaseDate, cover} = films[activeIndex];
   const releaseYear = getYear(releaseDate);
-  const {title : title1, cover : cover1} = films[1];
-  const massNoActive = 
+  const massNoActive = [...films.slice(0, activeIndex), ...films.slice((activeIndex + 1), films.length)];
+  const cards = massNoActive.map((element) => {
+    return (
+      <MovieCard
+        key={element.id}
+        title={element.title}
+        cover={element.cover} 
+      />
+    );
+  });
+  
+
 
   return (
     <React.Fragment>
@@ -39,7 +49,7 @@ const Main= (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={cover} alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
@@ -106,10 +116,7 @@ const Main= (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            <MovieCard
-              title = {title1}
-              cover = {cover1}
-            />
+            {cards}
           </div>
 
           <div className="catalog__more">

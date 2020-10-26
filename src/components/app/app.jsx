@@ -10,9 +10,6 @@ import {propsApp} from "../../props"
 
 const App = (props) => {
   const {films, users, reviews} = props;
-  console.log(props);
-  // const {title, cover, genre, releaseDate} = films[0];
-
 
   return (
         <BrowserRouter>
