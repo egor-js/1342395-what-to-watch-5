@@ -10,6 +10,7 @@ class MovieList extends PureComponent {
   constructor (props) {
     super(props);
     // const {films} = props;
+    this.onHover = onHover.bind(this);
     this.films = props.films;
     this.state = {
       activeIndex: 0,
@@ -22,7 +23,7 @@ class MovieList extends PureComponent {
           id={element.id}
           title={element.title}
           cover={element.cover}
-          onHover={onHover}
+          onHover={this.onHover}
         />
       );
     });
