@@ -7,7 +7,5 @@ export const propsApp = {
 };
 
 export const propsMain = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseYear: PropTypes.number.isRequired,
+  films: PropTypes.array.isRequired,
 };

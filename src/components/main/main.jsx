@@ -1,6 +1,6 @@
 import React from "react";
 import {propsMain} from "../../props"
-import MovieList from "../movie-list/movie-list"
+import MoviesList from "../movies-list/movies-list"
 import {getYear} from "../../utils"
 
 const Main= (props) => {
@@ -68,7 +68,7 @@ const Main= (props) => {
       </section >
 
       <div className="page-content">
-        <MovieList 
+        <MoviesList 
           films={otherFilms}
         />
 

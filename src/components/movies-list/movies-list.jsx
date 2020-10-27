@@ -1,20 +1,15 @@
 import React, {PureComponent} from "react";
-import PropTypes, { exact } from "prop-types";
+import PropTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card"
-
-const onHover = (id) => {
-  console.log(id);
-};
 
 class MovieList extends PureComponent {
   constructor (props) {
     super(props);
-    // const {films} = props;
-    this.onHover = onHover.bind(this);
-    this.films = props.films;
     this.state = {
-      activeIndex: 0,
+        activeIndex: 0,
     }
+    this._onHover = this._onHover.bind(this);
+    this.films = props.films;
     this.massNoActive = [...this.films.slice(0, this.state.activeIndex), ...this.films.slice((this.state.activeIndex + 1), this.films.length)];
     this.cards = this.massNoActive.map((element) => {
       return (
@@ -23,11 +18,10 @@ class MovieList extends PureComponent {
           id={element.id}
           title={element.title}
           cover={element.cover}
-          onHover={this.onHover}
+          onHover={this._onHover}
         />
       );
     });
-
   }
 
   render() {
@@ -70,7 +64,6 @@ class MovieList extends PureComponent {
 
         <div className="catalog__movies-list">
           {this.cards}
-
         </div>
 
         <div className="catalog__more">
@@ -80,6 +73,9 @@ class MovieList extends PureComponent {
     );
   }
   
+  _onHover(id) {
+    this.setState({activeIndex: id});
+  };
 
 };
 
