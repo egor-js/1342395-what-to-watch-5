@@ -1,13 +1,15 @@
 import React from "react";
 
 
-const AddReview = () => {
+const AddReview = (props) => {
+
+  const {poster, cover, title} = props.film;
 
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={cover} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -40,7 +42,7 @@ const AddReview = () => {
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={poster} alt={`${title} poster`} width="218" height="327" />
         </div>
       </div>
 

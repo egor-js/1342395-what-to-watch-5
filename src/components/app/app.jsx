@@ -10,7 +10,7 @@ import {propsApp} from "../../props"
 
 const App = (props) => {
   const {films, users, reviews} = props;
-
+ 
   return (
         <BrowserRouter>
       <Switch>
@@ -25,15 +25,48 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList />
         </Route>
-        <Route path="/Mains/:id">
-          <MoviePage />
-        </Route>
-        <Route path="/Mains/:id/review">
-          <AddReview />
-        </Route>
-        <Route exact path="/player/:id">
-          <Player />
-        </Route>
+        <Route
+          path="/films/:id"
+          exact
+          render={({ match }) => {
+            const id = match.params.id;
+
+            const currentFilm = films.find((film) => film.id === id);
+
+            return (
+              <MoviePage
+                film={currentFilm}
+              />);
+          }}
+        />
+        <Route
+          path="/films/:id/review"
+          exact
+          render={({ match }) => {
+            const id = match.params.id;
+            const currentFilm = films.find((film) => film.id === id);
+
+            return (
+              <AddReview
+                film={currentFilm}
+              />);
+          }}
+        />
+        <Route
+          path="/player/:id"
+          exact
+          render={({ match }) => {
+            const id = match.params.id;
+            const currentFilm = films.find((film) => film.id === id);
+            
+            return (
+              <Player
+                film={currentFilm}
+              />);
+          }}
+        />
+
+
       </Switch>
     </BrowserRouter>
   );
