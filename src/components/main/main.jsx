@@ -92,10 +92,4 @@ const Main= (props) => {
 
 Main.propTypes = propsMain;
 
-// Main.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   genre: PropTypes.string.isRequired,
-//   releaseYear: PropTypes.number.isRequired,
-// };
-
 export default Main;
