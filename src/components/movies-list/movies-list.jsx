@@ -75,7 +75,7 @@ class MovieList extends PureComponent {
   
   _onHover(id) {
     this.setState({activeIndex: id});
-  };
+  }
 
 };
 
