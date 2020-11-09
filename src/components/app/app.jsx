@@ -1,24 +1,22 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import WelcomeScreen from "../main/main";
+import Main from "../main/main";
 import AuthScreen from "../auth-screen/auth-screen";
 import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
+import {propsApp} from "../../props"
 
 const App = (props) => {
-  const { title, janre, releaseYear } = props;
-
+  const {films, users, reviews} = props;
+ 
   return (
         <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <WelcomeScreen
-            title={title}
-            janre={janre}
-            releaseYear={releaseYear}
+          <Main
+            films = {films}
           />
         </Route>
         <Route exact path="/login">
@@ -27,24 +25,59 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList />
         </Route>
-        <Route exact path="/films/:id">
-          <MoviePage />
-        </Route>
-        <Route exact path="/films/:id/review">
-          <AddReview />
-        </Route>
-        <Route exact path="/player/:id">
-          <Player />
-        </Route>
+        <Route
+          path="/films/:id"
+          exact
+          render={({ match }) => {
+            const id = match.params.id;
+
+            const currentFilm = films.find((film) => film.id === id);
+
+            return (
+              <MoviePage
+                film={currentFilm}
+              />);
+          }}
+        />
+        <Route
+          path="/films/:id/review"
+          exact
+          render={({ match }) => {
+            const id = match.params.id;
+            const currentFilm = films.find((film) => film.id === id);
+
+            return (
+              <AddReview
+                film={currentFilm}
+              />);
+          }}
+        />
+        <Route
+          path="/player/:id"
+          exact
+          render={({ match }) => {
+            const id = match.params.id;
+            const currentFilm = films.find((film) => film.id === id);
+            
+            return (
+              <Player
+                film={currentFilm}
+              />);
+          }}
+        />
+
+
       </Switch>
     </BrowserRouter>
   );
 };
 
-App.propTypes = {
-  title: PropTypes.string.isRequired,
-  janre: PropTypes.string.isRequired,
-  releaseYear: PropTypes.number.isRequired,
-};
+App.propTypes = propsApp;
+
+// App.propTypes = {
+//   Mains: PropTypes.array.isRequired,
+//   users: PropTypes.array.isRequired,
+//   reviews: PropTypes.array.isRequired,
+// };
 
 export default App;
