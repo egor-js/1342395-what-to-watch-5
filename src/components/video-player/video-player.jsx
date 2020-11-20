@@ -60,7 +60,7 @@ export default class VideoPlayer extends PureComponent {
           className="player__video"
           src={src}
           poster={cover}
-          muted={true}>
+          muted={false}>
         </video>
 
         <button type="button" className="player__exit">Exit</button>

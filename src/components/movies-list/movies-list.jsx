@@ -1,14 +1,15 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import MovieCard from "../movie-card/movie-card"
+import MovieCard from "../movie-card/movie-card";
 
 class MovieList extends PureComponent {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
-        activeIndex: 0,
-    }
-    this._onHover = this._onHover.bind(this);
+      activeIndex: 0,
+    };
+    this._onMouseEnter = this._onMouseEnter.bind(this);
+    this._onMouseLeave = this._onMouseLeave.bind(this);
     this.films = props.films;
     this.massNoActive = [...this.films.slice(0, this.state.activeIndex), ...this.films.slice((this.state.activeIndex + 1), this.films.length)];
     this.cards = this.massNoActive.map((element) => {
@@ -18,7 +19,8 @@ class MovieList extends PureComponent {
           id={element.id}
           title={element.title}
           cover={element.cover}
-          onHover={this._onHover}
+          onMouseEnter={this._onMouseEnter}
+          onMouseLeave={this._onMouseLeave}
         />
       );
     });
@@ -72,12 +74,18 @@ class MovieList extends PureComponent {
       </section>
     );
   }
-  
-  _onHover(id) {
+
+  _onMouseEnter(id) {
+    console.log(id);
     this.setState({activeIndex: id});
   }
 
-};
+  _onMouseLeave() {
+    console.log(`Leave from ${this.state.activeIndex}`)
+    this.setState({activeIndex: -1});
+  }
+
+}
 
 MovieList.propTypes = {
   films: PropTypes.array.isRequired,
