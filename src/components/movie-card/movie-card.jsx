@@ -12,7 +12,7 @@ const MovieCard = (props) => {
     src,
     isPlaying,
   } = props;
-  console.log(`isPlaying now ${isPlaying}`);
+
   return (
     <article className="small-movie-card catalog__movies-card"
       onMouseEnter={() => {
@@ -24,7 +24,6 @@ const MovieCard = (props) => {
       <div id={id}
         className="small-movie-card__image">
         <VideoPlayer isPlaying={isPlaying} src={src} cover={cover} />
-        {/* <img src={cover} alt={title} width="280" height="175" /> */}
       </div>
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="movie-page.html">{title}</a>

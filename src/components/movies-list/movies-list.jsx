@@ -2,18 +2,23 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card";
 
+const PLAYING_DELAY = 1000;
+
 class MovieList extends PureComponent {
   constructor(props) {
     super(props);
+      
     this.state = {
       activeIndex: 0,
       activeMovieId: -1,
     };
+
     this._onMouseEnter = this._onMouseEnter.bind(this);
     this._onMouseLeave = this._onMouseLeave.bind(this);
+    this._delayTimer = null;
+
     this.films = props.films;
     this.massNoActive = [...this.films.slice(0, this.state.activeIndex), ...this.films.slice((this.state.activeIndex + 1), this.films.length)];
-
   }
 
   render() {
@@ -78,13 +83,14 @@ class MovieList extends PureComponent {
   }
 
   _onMouseEnter(id) {
-    this.setState({activeMovieId: id});
+    this._delayTimer = setTimeout(() => this.setState({activeMovieId: id}), PLAYING_DELAY);
   }
 
   _onMouseLeave() {
+    clearTimeout(this._delayTimer);
+    this._delayTimer = null;
     this.setState({activeMovieId: -1});
   }
-
 }
 
 MovieList.propTypes = {

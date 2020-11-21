@@ -24,15 +24,6 @@ export default class VideoPlayer extends PureComponent {
     });
 
   }
-  // video.onplay = () => {
-  //   this.setState({
-  //     isPlaying: true,
-  //   });
-  // };
-
-  // video.onpause = () => this.setState({
-  //   isPlaying: false,
-  // });
 
   componentDidUpdate() {
     const video = this._videoRef.current;
@@ -41,6 +32,7 @@ export default class VideoPlayer extends PureComponent {
       video.play();
     } else {
       video.pause();
+      video.load();
     }
   }
 
@@ -59,15 +51,12 @@ export default class VideoPlayer extends PureComponent {
 
   render() {
     const {src, cover} = this.props;
-    console.log(this.props);
-    console.log(this._videoRef);
     return (
       <video
         ref={this._videoRef}
         className="player__video"
         src={src}
-        poster={cover}
-        muted={false}>
+        poster={cover}>
       </video>
     );
   }
