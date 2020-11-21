@@ -80,7 +80,6 @@ export const films = [
     id: `10`,
     title: `Johnny English`,
     genre: `Comedy`,
-    releaseDate: ``,
     releaseDate: `2003-04-05T00:00:00.000Z`,
     poster: ``,
     cover: `img/johnny-english.jpg`,
@@ -88,4 +87,3 @@ export const films = [
   },
 
 ];
-

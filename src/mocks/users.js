@@ -14,5 +14,5 @@ export const users = [
   }, {
     id: `05`,
     name: `serg`,
-  }, 
+  },
 ];
