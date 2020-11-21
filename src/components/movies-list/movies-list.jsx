@@ -7,23 +7,13 @@ class MovieList extends PureComponent {
     super(props);
     this.state = {
       activeIndex: 0,
+      activeMovieId: -1,
     };
     this._onMouseEnter = this._onMouseEnter.bind(this);
     this._onMouseLeave = this._onMouseLeave.bind(this);
     this.films = props.films;
     this.massNoActive = [...this.films.slice(0, this.state.activeIndex), ...this.films.slice((this.state.activeIndex + 1), this.films.length)];
-    this.cards = this.massNoActive.map((element) => {
-      return (
-        <MovieCard
-          key={element.title}
-          id={element.id}
-          title={element.title}
-          cover={element.cover}
-          onMouseEnter={this._onMouseEnter}
-          onMouseLeave={this._onMouseLeave}
-        />
-      );
-    });
+
   }
 
   render() {
@@ -65,7 +55,18 @@ class MovieList extends PureComponent {
         </ul>
 
         <div className="catalog__movies-list">
-          {this.cards}
+          {this.massNoActive.map((element) =>
+            <MovieCard
+              key={element.title}
+              id={element.id}
+              title={element.title}
+              cover={element.cover}
+              src={element.src}
+              onMouseEnter={this._onMouseEnter}
+              onMouseLeave={this._onMouseLeave}
+              isPlaying={this.state.activeMovieId === element.id}
+            />
+          )}
         </div>
 
         <div className="catalog__more">
@@ -73,16 +74,15 @@ class MovieList extends PureComponent {
         </div>
       </section>
     );
+
   }
 
   _onMouseEnter(id) {
-    console.log(id);
-    this.setState({activeIndex: id});
+    this.setState({activeMovieId: id});
   }
 
   _onMouseLeave() {
-    console.log(`Leave from ${this.state.activeIndex}`)
-    this.setState({activeIndex: -1});
+    this.setState({activeMovieId: -1});
   }
 
 }

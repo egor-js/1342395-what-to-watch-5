@@ -8,7 +8,6 @@ export default class VideoPlayer extends PureComponent {
     this._videoRef = createRef();
 
     this.state = {
-      isPlaying: false,
       isLoading: true,
     };
   }
@@ -17,81 +16,59 @@ export default class VideoPlayer extends PureComponent {
     const {src} = this.props;
     const video = this._videoRef.current;
 
+    video.muted = `muted`;
     video.src = src;
 
     video.oncanplaythrough = () => this.setState({
       isLoading: false,
     });
 
-    video.onplay = () => {
-      this.setState({
-        isPlaying: true,
-      });
-    };
-
-    video.onpause = () => this.setState({
-      isPlaying: false,
-    });
   }
+  // video.onplay = () => {
+  //   this.setState({
+  //     isPlaying: true,
+  //   });
+  // };
 
-  componentWillUnmount() {
-    const video = this._videoRef.current;
-
-    video.oncanplaythrough = null;
-  }
+  // video.onpause = () => this.setState({
+  //   isPlaying: false,
+  // });
 
   componentDidUpdate() {
     const video = this._videoRef.current;
 
-    if (this.state.isPlaying) {
+    if (this.props.isPlaying) {
       video.play();
     } else {
       video.pause();
     }
   }
 
+  componentWillUnmount() {
+    const video = this._videoRef.current;
+
+    if (video) {
+      video.oncanplaythrough = null;
+      video.onplay = null;
+      video.onpause = null;
+      video.src = ``;
+      video = null;
+    }
+  }
+
+
   render() {
-    const {src} = this.props;
-    const {cover} = this.props;
+    const {src, cover} = this.props;
+    console.log(this.props);
+    console.log(this._videoRef);
     return (
-      <div className="player">
-        <video
-          ref={this._videoRef}
-          className="player__video"
-          src={src}
-          poster={cover}
-          muted={false}>
-        </video>
-
-        <button type="button" className="player__exit">Exit</button>
-
-        <div className="player__controls">
-          <div className="player__controls-row">
-            <div className="player__time">
-              <progress className="player__progress" value="30" max="100"></progress>
-              <div className="player__toggler" style={{left: `30%`}}> Toggler</div>
-            </div>
-            <div className="player__time-value">1:30:29</div>
-          </div>
-
-          <div className="player__controls-row">
-            <button onClick={() => this.setState({isPlaying: !this.state.isPlaying})} type="button" className="player__play">
-              <svg viewBox="0 0 19 19" width="19" height="19">
-                <use xlinkHref="#play-s"></use>
-              </svg>
-              <span>Play</span>
-            </button>
-            <div className="player__name">Transpotting</div>
-
-            <button type="button" className="player__full-screen">
-              <svg viewBox="0 0 27 27" width="27" height="27">
-                <use xlinkHref="#full-screen"></use>
-              </svg>
-              <span>Full screen</span>
-            </button>
-          </div>
-        </div >
-      </div>
+      <video
+        ref={this._videoRef}
+        className="player__video"
+        src={src}
+        poster={cover}
+        muted={false}>
+      </video>
     );
   }
 }
@@ -99,4 +76,5 @@ export default class VideoPlayer extends PureComponent {
 VideoPlayer.propTypes = {
   src: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
 };
