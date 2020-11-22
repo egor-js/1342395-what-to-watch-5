@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {getYear} from "../../utils";
 
-const TabDetail = ({film}) => {
-  const {director, starring, time, genre, releaseDate} = film;
+const TabDetail = (props) => {
+  const {director, starring, time, genre, releaseDate} = props.film;
   const releaseYear = getYear(releaseDate);
   return (
     <div className="movie-card__text movie-card__row">
@@ -45,7 +45,7 @@ const TabDetail = ({film}) => {
 };
 
 TabDetail.propTypes = {
-  film: PropTypes.shape.isRequired
+  film: PropTypes.shape({}).isRequired,
 };
 
 export default TabDetail;

@@ -66,7 +66,7 @@ export default class TabsSelect extends React.PureComponent {
 }
 
 TabsSelect.propTypes = {
-  film: PropTypes.shape.isRequired,
+  film: PropTypes.shape({}).isRequired,
   filmReviews: PropTypes.array.isRequired,
   users: PropTypes.array.isRequired,
   rating: PropTypes.number.isRequired,

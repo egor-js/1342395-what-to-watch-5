@@ -127,7 +127,7 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  film: PropTypes.shape.isRequired,
+  film: PropTypes.shape({}).isRequired,
   reviews: PropTypes.array.isRequired,
   users: PropTypes.array.isRequired,
   rating: PropTypes.number.isRequired,

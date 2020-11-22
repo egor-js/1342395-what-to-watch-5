@@ -18,7 +18,6 @@ const ratingWord = (val) => {
 const TabsOverview = (props) => {
   const {film, rating, ratings} = props;
   const {description1, description2, director, starring} = film;
-  console.log(ratings);
   return (
     <React.Fragment>
       <div className="movie-rating">
@@ -40,7 +39,7 @@ const TabsOverview = (props) => {
 };
 
 TabsOverview.propTypes = {
-  film: PropTypes.shape.isRequired,
+  film: PropTypes.shape({}).isRequired,
   rating: PropTypes.number.isRequired,
   ratings: PropTypes.number.isRequired,
 };

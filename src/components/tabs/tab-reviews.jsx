@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const reviewsList = (review) => {
+const reviewsList = (review, users) => {
+  const user = users.find((item) => review.userId === item.id);
   return (
-  // eslint-disable-next-line react/jsx-key
     <React.Fragment>
       <blockquote className="review__quote">
         <p className="review__text">{review.text}</p>
 
         <footer className="review__details">
-          <cite className="review__author">{review.author}</cite>
+          <cite className="review__author">{user.name}</cite>
           <time className="review__date" dateTime={review.date}>{review.date}</time>
         </footer>
       </blockquote>
@@ -17,15 +17,14 @@ const reviewsList = (review) => {
       <div className="review__rating">{review.stars}</div>
     </React.Fragment>
   );
-
 };
 
 const TabsReviews = (props) => {
-  const {filmReviews} = props;
+  const {filmReviews, users} = props;
   const tmp = filmReviews.map((review) => {
     return (
       <div key={review.id} className="review">
-        {reviewsList(review)}
+        {reviewsList(review, users)}
       </div>
     );
   });
