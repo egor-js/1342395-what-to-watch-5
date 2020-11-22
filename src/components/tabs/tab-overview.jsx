@@ -15,23 +15,24 @@ const ratingWord = (val) => {
   }
 };
 
-const TabsOverview = ({film}) => {
-  const {rating, count, desc, director, starring} = film;
+const TabsOverview = (props) => {
+  const {film, rating, ratings} = props;
+  const {description1, description2, director, starring} = film;
+  console.log(ratings);
   return (
     <React.Fragment>
       <div className="movie-rating">
         <div className="movie-rating__score">{rating}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{ratingWord(rating)}</span>
-          <span className="movie-rating__count">{count} ratings</span>
+          <span className="movie-rating__count">{ratings} ratings</span>
         </p>
       </div>
 
       <div className="movie-card__text">
-        <p>{desc}</p>
-
+        <p>{description1}</p>
+        <p>{description2}</p>
         <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
         <p className="movie-card__starring"><strong>Starring: {starring.join(`, `)} and other</strong></p>
       </div>
     </React.Fragment>
@@ -39,7 +40,9 @@ const TabsOverview = ({film}) => {
 };
 
 TabsOverview.propTypes = {
-  film: PropTypes.shape.isRequired
+  film: PropTypes.shape.isRequired,
+  rating: PropTypes.number.isRequired,
+  ratings: PropTypes.number.isRequired,
 };
 
 export default TabsOverview;

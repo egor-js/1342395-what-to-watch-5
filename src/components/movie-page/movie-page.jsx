@@ -2,10 +2,14 @@ import React from "react";
 import {getYear} from "../../utils";
 import {Link} from 'react-router-dom';
 import Logo from "../logo/logo";
-// import Tabs from '../tabs/tabs';
+import TabsSelect from "../tabs/tabs-select";
+import PropTypes from 'prop-types';
 
 const MoviePage = (props) => {
-  const {id, title, description1, description2, director, starring, genre, releaseDate} = props.film;
+  const {id, title, genre, releaseDate} = props.film;
+  const reviews = props.reviews;
+  const users = props.users;
+  const rating = props.rating;
   const releaseYear = getYear(releaseDate);
 
   return (
@@ -61,36 +65,7 @@ const MoviePage = (props) => {
               <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="movie-rating">
-                <div className="movie-rating__score">8,9</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">Very good</span>
-                  <span className="movie-rating__count">240 ratings</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                <p>{description1}</p>
-                <p>{description2}</p>
-                <p className="movie-card__director"><strong>Director: {director}</strong></p>
-                <p className="movie-card__starring"><strong>Starring: {`${starring.join(`,`)} and other`}</strong></p>
-              </div>
-            </div>
+            <TabsSelect rating={rating} filmReviews={reviews} film={props.film} users={users}/>
           </div>
         </div>
       </section >
@@ -149,6 +124,13 @@ const MoviePage = (props) => {
     </React.Fragment>
   );
 
+};
+
+MoviePage.propTypes = {
+  film: PropTypes.shape.isRequired,
+  reviews: PropTypes.array.isRequired,
+  users: PropTypes.array.isRequired,
+  rating: PropTypes.number.isRequired,
 };
 
 export default MoviePage;

@@ -32,11 +32,21 @@ const App = (props) => {
             const id = match.params.id;
 
             const currentFilm = films.find((film) => film.id === id);
-
+            const filmReviews = reviews.filter((item) => {
+              return item.filmId === id;
+            });
+            const usersReviewers = filmReviews.map((review) => {
+              return users.find((user) => {
+                return user.id === review.userId;
+              });
+            });
+            const rating = filmReviews.reduce((sum, item) => sum + Number(item.stars), 0) / (filmReviews.length);
             return (
               <MoviePage
                 film={currentFilm}
-                reviews={reviews}
+                users={usersReviewers}
+                reviews={filmReviews}
+                rating={rating}
               />);
           }}
         />
