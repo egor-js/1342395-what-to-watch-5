@@ -1,15 +1,16 @@
 import React from "react";
-import {propsMain} from "../../props"
-import MoviesList from "../movies-list/movies-list"
-import {getYear} from "../../utils"
+import {propsMain} from "../../props";
+import MoviesList from "../movies-list/movies-list";
+import {getYear} from "../../utils";
+import Logo from "../logo/logo";
 
-const Main= (props) => {
+const Main = (props) => {
   const {films} = props;
   const activeIndex = 0;
   const {title, genre, releaseDate, cover} = films[activeIndex];
   const releaseYear = getYear(releaseDate);
   const otherFilms = [...films.slice(0, activeIndex), ...films.slice((activeIndex + 1), films.length)];
-  
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -20,13 +21,7 @@ const Main= (props) => {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo noLink={true}/>
 
           <div className="user-block">
             <div className="user-block__avatar">
@@ -73,13 +68,7 @@ const Main= (props) => {
         />
 
         <footer className="page-footer">
-          <div className="logo">
-            <a className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo isFooter={true} noLink={true}/>
 
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>

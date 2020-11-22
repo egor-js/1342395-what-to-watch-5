@@ -1,18 +1,18 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../main/main";
 import AuthScreen from "../auth-screen/auth-screen";
 import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
-import {propsApp} from "../../props"
+import {propsApp} from "../../props";
 
 const App = (props) => {
   const {films, users, reviews} = props;
- 
+
   return (
-        <BrowserRouter>
+    <BrowserRouter>
       <Switch>
         <Route exact path="/">
           <Main
@@ -28,7 +28,7 @@ const App = (props) => {
         <Route
           path="/films/:id"
           exact
-          render={({ match }) => {
+          render={({match}) => {
             const id = match.params.id;
 
             const currentFilm = films.find((film) => film.id === id);
@@ -36,13 +36,14 @@ const App = (props) => {
             return (
               <MoviePage
                 film={currentFilm}
+                reviews={reviews}
               />);
           }}
         />
         <Route
           path="/films/:id/review"
           exact
-          render={({ match }) => {
+          render={({match}) => {
             const id = match.params.id;
             const currentFilm = films.find((film) => film.id === id);
 
@@ -55,10 +56,10 @@ const App = (props) => {
         <Route
           path="/player/:id"
           exact
-          render={({ match }) => {
+          render={({match}) => {
             const id = match.params.id;
             const currentFilm = films.find((film) => film.id === id);
-            
+
             return (
               <Player
                 film={currentFilm}

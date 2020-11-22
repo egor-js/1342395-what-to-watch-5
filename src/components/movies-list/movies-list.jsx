@@ -7,7 +7,7 @@ const PLAYING_DELAY = 1000;
 class MovieList extends PureComponent {
   constructor(props) {
     super(props);
-      
+
     this.state = {
       activeIndex: 0,
       activeMovieId: -1,
