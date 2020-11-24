@@ -128,7 +128,7 @@ export const films = [
   }, {
     id: `10`,
     title: `Johnny English`,
-    genre: `Comedy`,
+    genre: `Romance`,
     releaseDate: `2003-04-05T00:00:00.000Z`,
     raitingGlobal: `8.9`,
     director: `Wes Andreson`,

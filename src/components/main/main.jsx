@@ -3,9 +3,12 @@ import {propsMain} from "../../props";
 import MoviesList from "../movies-list/movies-list";
 import {getYear} from "../../utils";
 import Logo from "../logo/logo";
+import GenresList from "../genres-list/genres-list";
+import {connect} from "react-redux";
+import {ActionCreator} from '../../store/action';
 
 const Main = (props) => {
-  const {films} = props;
+  const {films, filmsByGenre, activeGenre, onGenreClick} = props;
   const activeIndex = 0;
   const {title, genre, releaseDate, cover} = films[activeIndex];
   const releaseYear = getYear(releaseDate);
@@ -63,10 +66,18 @@ const Main = (props) => {
       </section >
 
       <div className="page-content">
-        <MoviesList 
-          films={otherFilms}
-        />
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+          <GenresList
+            films={filmsByGenre}
+            activeGenre={activeGenre}
+            onGenreChange={onGenreClick}
+          />
 
+          <MoviesList
+            films={filmsByGenre}
+          />
+        </section>
         <footer className="page-footer">
           <Logo isFooter={true} noLink={true}/>
 
@@ -81,4 +92,20 @@ const Main = (props) => {
 
 Main.propTypes = propsMain;
 
-export default Main;
+
+const mapStateToProps = (state) => {
+  return {
+    activeGenre: state.activeGenre,
+    filmsByGenre: state.filmsByGenre,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreClick(activeGenre) {
+    dispatch(ActionCreator.changeFilmsGenre(activeGenre));
+  }
+});
+
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
