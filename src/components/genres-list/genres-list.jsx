@@ -16,7 +16,6 @@ const GenresList = (props) => {
           data-genre={genre}
           onClick={(evt) => {
             evt.preventDefault();
-            evt.stopPropagation();
             onGenreChange(genre);
           }}
         >

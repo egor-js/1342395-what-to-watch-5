@@ -1,13 +1,14 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card";
+import {connect} from "react-redux";
 
 const PLAYING_DELAY = 1000;
 
 class MovieList extends PureComponent {
   constructor(props) {
     super(props);
-
+    console.log(props);
     this.state = {
       activeIndex: 0,
       activeMovieId: -1,
@@ -18,15 +19,16 @@ class MovieList extends PureComponent {
     this._delayTimer = null;
 
     this.films = props.films;
-    console.log(props);
-    this.massNoActive = [...this.films.slice(0, this.state.activeIndex), ...this.films.slice((this.state.activeIndex + 1), this.films.length)];
+    this.filmsByGenre = props.filmsByGenre;
+    // this.massNoActive = [...this.films.slice(0, this.state.activeIndex), ...this.films.slice((this.state.activeIndex + 1), this.films.length)];
   }
 
   render() {
     return (
       <React.Fragment>
         <div className="catalog__movies-list">
-          {this.massNoActive.map((element) =>
+          {this.filmsByGenre.map((element) =>
+          // {this.massNoActive.map((element) =>
             <MovieCard
               key={element.title}
               id={element.id}
@@ -61,6 +63,17 @@ class MovieList extends PureComponent {
 
 MovieList.propTypes = {
   films: PropTypes.array.isRequired,
+  filmsByGenre: PropTypes.array.isRequired,
 };
 
-export default MovieList;
+const mapStateToProps = (state) => {
+  return {
+    activeGenre: state.activeGenre,
+    filmsByGenre: state.filmsByGenre,
+  };
+};
+
+export {MovieList};
+export default connect(mapStateToProps)(MovieList);
+
+
