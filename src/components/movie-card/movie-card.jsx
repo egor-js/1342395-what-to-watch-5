@@ -9,15 +9,10 @@ const MovieCard = (props) => {
     cover,
     onMouseEnter,
     onMouseLeave,
-    onMouseClick,
     id,
     src,
     isPlaying,
   } = props;
-
-  // onClick={() => {
-  //   onMouseClick(id);
-  // }}
 
   return (
     <article className="small-movie-card catalog__movies-card"
