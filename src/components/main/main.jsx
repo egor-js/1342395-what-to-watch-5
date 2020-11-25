@@ -1,18 +1,18 @@
 import React from "react";
-import {propsMain} from "../../props";
 import MoviesList from "../movies-list/movies-list";
 import {getYear} from "../../utils";
 import Logo from "../logo/logo";
 import GenresList from "../genres-list/genres-list";
 import {connect} from "react-redux";
-import {ActionCreator} from '../../store/action';
 
+const FIRST_FILM_FROM_LIST = 0;
+
+// eslint-disable-next-line react/prop-types
 const Main = (props) => {
-  const {films, filmsByGenre, activeGenre, onGenreClick} = props;
-  const activeIndex = 0;
-  const {title, genre, releaseDate, cover} = films[activeIndex];
+  console.log(props);
+  const {filmsByGenre = []} = props;
+  const {title, genre, releaseDate, cover} = filmsByGenre[FIRST_FILM_FROM_LIST];
   const releaseYear = getYear(releaseDate);
-  const otherFilms = [...films.slice(0, activeIndex), ...films.slice((activeIndex + 1), films.length)];
 
   return (
     <React.Fragment>
@@ -68,15 +68,8 @@ const Main = (props) => {
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenresList
-            films={filmsByGenre}
-            activeGenre={activeGenre}
-            onGenreChange={onGenreClick}
-          />
-
-          <MoviesList
-            films={filmsByGenre}
-          />
+          <GenresList />
+          <MoviesList />
         </section>
         <footer className="page-footer">
           <Logo isFooter={true} noLink={true}/>
@@ -90,22 +83,7 @@ const Main = (props) => {
   );
 };
 
-Main.propTypes = propsMain;
-
-
-const mapStateToProps = (state) => {
-  return {
-    activeGenre: state.activeGenre,
-    filmsByGenre: state.filmsByGenre,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  onGenreClick(activeGenre) {
-    dispatch(ActionCreator.changeFilmsGenre(activeGenre));
-  }
-});
-
+const mapStateToProps = ({filmsByGenre}) => ({filmsByGenre});
 
 export {Main};
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps)(Main);

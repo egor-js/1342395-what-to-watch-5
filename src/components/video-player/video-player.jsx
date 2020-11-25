@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 export default class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
+    console.log(props);
 
     this._videoRef = createRef();
 
@@ -37,7 +38,7 @@ export default class VideoPlayer extends PureComponent {
   }
 
   componentWillUnmount() {
-    const video = this._videoRef.current;
+    let video = this._videoRef.current;
 
     if (video) {
       video.oncanplaythrough = null;

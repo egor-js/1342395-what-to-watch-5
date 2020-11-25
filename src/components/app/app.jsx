@@ -3,21 +3,20 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../main/main";
 import AuthScreen from "../auth-screen/auth-screen";
 import MyList from "../my-list/my-list";
-import MoviePage from "../movie-page/movie-page";
-import AddReview from "../add-review/add-review";
-import Player from "../player/player";
+// import MoviePage from "../movie-page/movie-page";
+// import AddReview from "../add-review/add-review";
+// import Player from "../player/player";
 import {propsApp} from "../../props";
 
 const App = (props) => {
-  const {films, users, reviews} = props;
+  console.log(props);
+  const {users, reviews} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main
-            films = {films}
-          />
+          <Main />
         </Route>
         <Route exact path="/login">
           <AuthScreen />
@@ -25,7 +24,7 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList />
         </Route>
-        <Route
+        {/* <Route
           path="/films/:id"
           exact
           render={({match}) => {
@@ -75,7 +74,7 @@ const App = (props) => {
                 film={currentFilm}
               />);
           }}
-        />
+        /> */}
 
 
       </Switch>
