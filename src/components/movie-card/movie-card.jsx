@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player";
+import {Link} from 'react-router-dom';
 
 const MovieCard = (props) => {
   const {
@@ -8,10 +9,15 @@ const MovieCard = (props) => {
     cover,
     onMouseEnter,
     onMouseLeave,
+    onMouseClick,
     id,
     src,
     isPlaying,
   } = props;
+
+  // onClick={() => {
+  //   onMouseClick(id);
+  // }}
 
   return (
     <article className="small-movie-card catalog__movies-card"
@@ -20,13 +26,16 @@ const MovieCard = (props) => {
       }}
       onMouseLeave={() => {
         onMouseLeave();
-      }}>
+      }}
+    >
       <div id={id}
         className="small-movie-card__image">
         <VideoPlayer isPlaying={isPlaying} src={src} cover={cover} />
       </div>
       <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="movie-page.html">{title}</a>
+        <Link className="small-movie-card__link" to={`/films/${id}`}>
+          {title}
+        </Link>
       </h3>
     </article>
   );
@@ -41,6 +50,7 @@ MovieCard.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
+  onMouseClick: PropTypes.func.isRequired,
 };
 
 export default MovieCard;

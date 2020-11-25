@@ -3,14 +3,14 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../main/main";
 import AuthScreen from "../auth-screen/auth-screen";
 import MyList from "../my-list/my-list";
-// import MoviePage from "../movie-page/movie-page";
+import MoviePage from "../movie-page/movie-page";
 // import AddReview from "../add-review/add-review";
-// import Player from "../player/player";
+import Player from "../player/player";
 import {propsApp} from "../../props";
 
 const App = (props) => {
   console.log(props);
-  const {users, reviews} = props;
+  const {users, reviews, films} = props;
 
   return (
     <BrowserRouter>
@@ -24,7 +24,7 @@ const App = (props) => {
         <Route exact path="/mylist">
           <MyList />
         </Route>
-        {/* <Route
+        <Route
           path="/films/:id"
           exact
           render={({match}) => {
@@ -74,7 +74,7 @@ const App = (props) => {
                 film={currentFilm}
               />);
           }}
-        /> */}
+        />
 
 
       </Switch>

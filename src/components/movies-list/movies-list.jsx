@@ -18,6 +18,7 @@ class MovieList extends PureComponent {
     this._onMouseEnter = this._onMouseEnter.bind(this);
     this._onMouseLeave = this._onMouseLeave.bind(this);
     this._onMoreClick = this._onMoreClick.bind(this);
+    this._onClick = this._onClick.bind(this);
     this._delayTimer = null;
   }
 
@@ -39,6 +40,10 @@ class MovieList extends PureComponent {
 
   _onMoreClick() {
     this.setState(({page}) => ({page: 1 + page}));
+  }
+
+  _onClick(id) {
+    return null;
   }
 
   render() {
@@ -72,6 +77,7 @@ class MovieList extends PureComponent {
               src={film.src}
               onMouseEnter={this._onMouseEnter}
               onMouseLeave={this._onMouseLeave}
+              onMouseClick={this._onClick}
               isPlaying={activeMovieId === film.id}
             />
           )}

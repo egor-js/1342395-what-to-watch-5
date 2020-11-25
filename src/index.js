@@ -18,8 +18,9 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
       <App
-        users = {users}
-        reviews = {reviews}
+        films={films}
+        users={users}
+        reviews={reviews}
       />,
     </Provider>,
     document.querySelector(`#root`)
