@@ -11,12 +11,12 @@ export default class VideoPlayer extends PureComponent {
   }
 
   componentDidMount() {
-    const {src} = this.props;
+    const {src, isMuted = false} = this.props;
     const video = this._videoRef.current;
 
-    video.muted = `muted`;
+    video.muted = isMuted;
     video.src = src;
-
+    video.controls = !isMuted;
     video.oncanplaythrough = () => this.setState({
       isLoading: false,
     });
@@ -64,4 +64,5 @@ VideoPlayer.propTypes = {
   src: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
+  isMuted: PropTypes.bool.isRequired,
 };

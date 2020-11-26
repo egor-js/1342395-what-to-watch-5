@@ -25,7 +25,7 @@ const MovieCard = (props) => {
     >
       <div id={id}
         className="small-movie-card__image">
-        <VideoPlayer isPlaying={isPlaying} src={src} cover={cover} />
+        <VideoPlayer isPlaying={isPlaying} src={src} cover={cover} isMuted={true}/>
       </div>
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to={`/films/${id}`}>

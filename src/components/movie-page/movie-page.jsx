@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import {Props} from "../../props";
 import MoviesList from "../movies-list/movies-list";
 
-
 const MoviePage = (props) => {
   const {id, title, genre, releaseDate} = props.film;
   const reviews = props.reviews;
@@ -52,7 +51,9 @@ const MoviePage = (props) => {
                 </button>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
+                    <Link to={`/films/${id}/review`}>
+                      {title}
+                    </Link>
                   </svg>
                   <span>My list</span>
                 </button>
@@ -97,6 +98,7 @@ MoviePage.propTypes = {
   film: Props.film,
   reviews: PropTypes.arrayOf(Props.review).isRequired,
   users: PropTypes.arrayOf(Props.user).isRequired,
+  rating: PropTypes.number.isRequired,
 };
 
 export default MoviePage;

@@ -11,7 +11,6 @@ const Player = (props) => {
       cover={cover}
     />
   );
-
 };
 
 Player.PropTypes = {
