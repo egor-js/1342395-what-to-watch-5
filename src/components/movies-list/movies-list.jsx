@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card";
 import {connect} from "react-redux";
+import ShowMoreButton from "../show-more-button/show-more-button";
 
 const PLAYING_DELAY = 1000;
 
@@ -77,7 +78,7 @@ class MovieList extends PureComponent {
           )}
         </div>
 
-        {filmsByGenre.length > slicedFilms.length && !flagMoreLike ? showMoreButton : null}
+        {filmsByGenre.length > slicedFilms.length && !flagMoreLike ? <ShowMoreButton onMoreClick={this._onMoreClick}/> : null}
       </React.Fragment>
     );
 

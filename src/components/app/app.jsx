@@ -4,7 +4,7 @@ import Main from "../main/main";
 import AuthScreen from "../auth-screen/auth-screen";
 import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
-// import AddReview from "../add-review/add-review";
+import AddReview from "../add-review/add-review";
 import Player from "../player/player";
 import {propsApp} from "../../props";
 
