@@ -43,10 +43,10 @@ class MovieList extends PureComponent {
 
   render() {
     // eslint-disable-next-line react/prop-types
-    const {filmsByGenre = []} = this.props;
+    const {filmsByGenre = [], flagMoreLike} = this.props;
     const {activeMovieId, page} = this.state;
 
-    const slicedFilms = filmsByGenre.slice(0, 8 * page);
+    const slicedFilms = flagMoreLike ? filmsByGenre.slice(0, 4) : filmsByGenre.slice(0, 8 * page);
 
     const showMoreButton = (
       <div className="catalog__more">
@@ -77,7 +77,7 @@ class MovieList extends PureComponent {
           )}
         </div>
 
-        {filmsByGenre.length > slicedFilms.length ? showMoreButton : null}
+        {filmsByGenre.length > slicedFilms.length && !flagMoreLike ? showMoreButton : null}
       </React.Fragment>
     );
 

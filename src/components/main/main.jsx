@@ -8,9 +8,7 @@ import {connect} from "react-redux";
 const FIRST_FILM_FROM_LIST = 0;
 
 // eslint-disable-next-line react/prop-types
-const Main = (props) => {
-  console.log(props);
-  const {filmsByGenre = []} = props;
+const Main = ({filmsByGenre = []}) => {
   const {title, genre, releaseDate, cover} = filmsByGenre[FIRST_FILM_FROM_LIST];
   const releaseYear = getYear(releaseDate);
 

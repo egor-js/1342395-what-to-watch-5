@@ -75,7 +75,7 @@ const MoviePage = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MoviesList />
+          <MoviesList flagMoreLike={true}/>
         </section>
 
         <footer className="page-footer">
