@@ -7,7 +7,7 @@ export const Props = {
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
-    raitingGlobal: PropTypes.number.isRequired,
+    raitingGlobal: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     description1: PropTypes.string.isRequired,
     description2: PropTypes.string.isRequired,
@@ -16,16 +16,16 @@ export const Props = {
     poster: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
   }).isRequired,
-  users: PropTypes.shape({
+  user: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
-  reviews: PropTypes.shape({
+  review: PropTypes.shape({
     id: PropTypes.string.isRequired,
     filmId: PropTypes.string.isRequired,
     userId: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    stars: PropTypes.number.isRequired,
+    stars: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
   }).isRequired,
 };

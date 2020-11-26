@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {Props} from "../../props";
 import MovieCard from "../movie-card/movie-card";
 import {connect} from "react-redux";
 import ShowMoreButton from "../show-more-button/show-more-button";
@@ -43,7 +44,7 @@ class MovieList extends PureComponent {
 
   render() {
     // eslint-disable-next-line react/prop-types
-    const {filmsByGenre = [], flagMoreLike} = this.props;
+    const {filmsByGenre = [], flagMoreLike = false} = this.props;
     const {activeMovieId, page} = this.state;
     const slicedFilms = flagMoreLike ? filmsByGenre.slice(0, 4) : filmsByGenre.slice(0, 8 * page);
 
@@ -70,6 +71,11 @@ class MovieList extends PureComponent {
 
   }
 }
+
+MovieList.propTypes = {
+  filmsByGenre: PropTypes.arrayOf(Props.film).isRequired,
+  flagMoreLike: PropTypes.bool,
+};
 
 const mapStateToProps = ({filmsByGenre}) => ({filmsByGenre});
 

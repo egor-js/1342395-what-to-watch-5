@@ -84,11 +84,8 @@ const App = (props) => {
 
 App.propTypes = {
   films: PropTypes.arrayOf(Props.film).isRequired,
+  reviews: PropTypes.arrayOf(Props.review).isRequired,
+  users: PropTypes.arrayOf(Props.user).isRequired,
 };
-// App.propTypes = {
-//   Mains: PropTypes.array.isRequired,
-//   users: PropTypes.array.isRequired,
-//   reviews: PropTypes.array.isRequired,
-// };
 
 export default App;

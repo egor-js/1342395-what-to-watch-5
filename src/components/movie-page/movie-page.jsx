@@ -4,7 +4,9 @@ import {Link} from 'react-router-dom';
 import Logo from "../logo/logo";
 import TabsSelect from "../tabs/tabs-select";
 import PropTypes from 'prop-types';
+import {Props} from "../../props";
 import MoviesList from "../movies-list/movies-list";
+
 
 const MoviePage = (props) => {
   const {id, title, genre, releaseDate} = props.film;
@@ -92,10 +94,9 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  film: PropTypes.shape({}).isRequired,
-  reviews: PropTypes.array.isRequired,
-  users: PropTypes.array.isRequired,
-  rating: PropTypes.number.isRequired,
+  film: Props.film,
+  reviews: PropTypes.arrayOf(Props.review).isRequired,
+  users: PropTypes.arrayOf(Props.user).isRequired,
 };
 
 export default MoviePage;
