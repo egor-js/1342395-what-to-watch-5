@@ -49,18 +49,6 @@ class MovieList extends PureComponent {
 
     const slicedFilms = flagMoreLike ? filmsByGenre.slice(0, 4) : filmsByGenre.slice(0, 8 * page);
 
-    const showMoreButton = (
-      <div className="catalog__more">
-        <button
-          className="catalog__button"
-          type="button"
-          onClick={this._onMoreClick}
-        >
-          Show more
-        </button>
-      </div>
-    );
-
     return (
       <React.Fragment>
         <div className="catalog__movies-list">
