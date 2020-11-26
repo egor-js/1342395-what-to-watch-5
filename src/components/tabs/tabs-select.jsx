@@ -13,12 +13,10 @@ const getComponentByType = (type, film, filmReviews, rating, users) => {
     case `Reviews`:
       return <TabReviews users={users} filmReviews={filmReviews} />;
   }
-
   return <TabOverview rating={rating} ratings={filmReviews.length} film={film} />;
 };
 
 const tabsNav = (active, onTabClick) => {
-  console.log(`active is ${active}, onTabClick is ${onTabClick}`);
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
@@ -36,7 +34,6 @@ const tabsNav = (active, onTabClick) => {
     </nav>
   );
 };
-
 
 export default class TabsSelect extends React.PureComponent {
   constructor(props) {
@@ -60,9 +57,7 @@ export default class TabsSelect extends React.PureComponent {
         {getComponentByType(this.state.active, film, filmReviews, rating, users)}
       </div>
     );
-
   }
-
 }
 
 TabsSelect.propTypes = {

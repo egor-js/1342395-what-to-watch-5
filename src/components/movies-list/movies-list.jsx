@@ -9,7 +9,6 @@ const PLAYING_DELAY = 1000;
 class MovieList extends PureComponent {
   constructor(props) {
     super(props);
-    console.log(props);
 
     this.state = {
       page: 1,
@@ -46,7 +45,6 @@ class MovieList extends PureComponent {
     // eslint-disable-next-line react/prop-types
     const {filmsByGenre = [], flagMoreLike} = this.props;
     const {activeMovieId, page} = this.state;
-
     const slicedFilms = flagMoreLike ? filmsByGenre.slice(0, 4) : filmsByGenre.slice(0, 8 * page);
 
     return (

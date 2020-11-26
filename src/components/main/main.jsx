@@ -1,9 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list";
 import {getYear} from "../../utils";
 import Logo from "../logo/logo";
 import GenresList from "../genres-list/genres-list";
 import {connect} from "react-redux";
+import {Props} from "../../props";
 
 const FIRST_FILM_FROM_LIST = 0;
 
@@ -79,6 +81,10 @@ const Main = ({filmsByGenre = []}) => {
       </div>
     </React.Fragment>
   );
+};
+
+Main.propTypes = {
+  filmsByGenre: PropTypes.arrayOf(Props.film).isRequired,
 };
 
 const mapStateToProps = ({filmsByGenre}) => ({filmsByGenre});

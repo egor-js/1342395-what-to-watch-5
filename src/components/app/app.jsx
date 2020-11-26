@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../main/main";
 import AuthScreen from "../auth-screen/auth-screen";
@@ -6,10 +7,9 @@ import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
 import Player from "../player/player";
-import {propsApp} from "../../props";
+import {Props} from "../../props";
 
 const App = (props) => {
-  console.log(props);
   const {users, reviews, films} = props;
 
   return (
@@ -82,8 +82,9 @@ const App = (props) => {
   );
 };
 
-App.propTypes = propsApp;
-
+App.propTypes = {
+  films: PropTypes.arrayOf(Props.film).isRequired,
+};
 // App.propTypes = {
 //   Mains: PropTypes.array.isRequired,
 //   users: PropTypes.array.isRequired,
