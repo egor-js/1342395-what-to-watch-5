@@ -1,23 +1,27 @@
 import React from "react";
-import VideoPlayer from "../video-player/video-player";
+// import VideoPlayer from "../video-player/video-player";
 import PropTypes from "prop-types";
 
 const Player = (props) => {
-  const {film} = props;
-  const {src, cover} = film;
+  const {videoRef, src, cover, isMuted, className} = props;
+
   return (
-    <VideoPlayer
+    <video
+      ref={videoRef}
+      className={className}
       src={src}
-      cover={cover}
+      poster={cover}
+      muted={isMuted}
     />
   );
 };
 
-Player.PropTypes = {
-  film: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    cover: PropTypes.string.isRequired,
-  }).isRequired,
+Player.propTypes = {
+  videoRef: PropTypes.object.isRequired,
+  src: PropTypes.string.isRequired,
+  cover: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  isMuted: PropTypes.bool.isRequired,
 };
 
 export default Player;

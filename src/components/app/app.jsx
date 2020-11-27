@@ -6,8 +6,12 @@ import AuthScreen from "../auth-screen/auth-screen";
 import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
-import Player from "../player/player";
+import PlayerPage from "../player-page/player-page";
 import {Props} from "../../props";
+import {withVideoPlayer} from "../../hocs/with-video-player";
+
+const VideoPlayer = withVideoPlayer(PlayerPage);
+
 
 const App = (props) => {
   const {users, reviews, films} = props;
@@ -70,7 +74,7 @@ const App = (props) => {
             const currentFilm = films.find((film) => film.id === id);
 
             return (
-              <Player
+              <VideoPlayer
                 film={currentFilm}
               />);
           }}
