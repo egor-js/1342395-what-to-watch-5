@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {getYear} from "../../utils";
+import {Props} from "../../props";
 
 const TabDetail = (props) => {
   const {director, starring, time, genre, releaseDate} = props.film;
@@ -45,7 +45,7 @@ const TabDetail = (props) => {
 };
 
 TabDetail.propTypes = {
-  film: PropTypes.shape({}).isRequired,
+  film: Props.film,
 };
 
 export default TabDetail;

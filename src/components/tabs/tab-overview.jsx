@@ -1,19 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-const ratingWord = (val) => {
-  if (val >= 0 && val < 3) {
-    return `Bad`;
-  } else if (val >= 3 && val < 5) {
-    return `Normal`;
-  } else if (val >= 5 && val < 8) {
-    return `Good`;
-  } else if (val >= 8 && val < 10) {
-    return `Very good`;
-  } else {
-    return `Awesome`;
-  }
-};
+import {Props} from "../../props";
+import {ratingWord} from "../../utils";
 
 const TabsOverview = (props) => {
   const {film, rating, ratings} = props;
@@ -39,9 +27,9 @@ const TabsOverview = (props) => {
 };
 
 TabsOverview.propTypes = {
-  film: PropTypes.shape({}).isRequired,
-  rating: PropTypes.number.isRequired,
-  ratings: PropTypes.number.isRequired,
+  film: Props.film,
+  rating: PropTypes.string.isRequired,
+  ratings: PropTypes.string.isRequired,
 };
 
 export default TabsOverview;

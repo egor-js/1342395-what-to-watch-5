@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {Props} from "../../props";
 
 const reviewsList = (review, users) => {
   const user = users.find((item) => review.userId === item.id);
@@ -39,7 +39,8 @@ const TabsReviews = (props) => {
 };
 
 TabsReviews.propTypes = {
-  filmReviews: PropTypes.array.isRequired,
+  review: Props.review,
+  users: Props.users,
 };
 
 export default TabsReviews;

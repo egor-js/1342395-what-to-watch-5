@@ -6,8 +6,7 @@ import AuthScreen from "../auth-screen/auth-screen";
 import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
-import Player from "../video-player/video-player";
-// import Player from "../player/player";
+import Player from "../player/player";
 import {Props} from "../../props";
 
 const App = (props) => {
