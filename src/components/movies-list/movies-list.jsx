@@ -9,6 +9,7 @@ const PLAYING_DELAY = 1000;
 
 class MovieList extends PureComponent {
   constructor(props) {
+    console.log(props);
     super(props);
 
     this.state = {

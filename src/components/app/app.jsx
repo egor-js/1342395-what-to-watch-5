@@ -15,8 +15,7 @@ import VideoPlayer from "../video-player/video-player";
 // const VideoPlayer = withVideoPlayer(PlayerPage);
 
 
-const App = (props) => {
-  const {users, reviews, films} = props;
+const App = () => {
 
   return (
     <BrowserRouter>

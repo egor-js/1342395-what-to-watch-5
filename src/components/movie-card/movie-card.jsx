@@ -6,12 +6,9 @@ import {Link} from 'react-router-dom';
 const MovieCard = (props) => {
   const {
     title,
-    cover,
     onMouseEnter,
     onMouseLeave,
     id,
-    src,
-    isPlaying,
   } = props;
 
   return (
@@ -25,7 +22,7 @@ const MovieCard = (props) => {
     >
       <div id={id}
         className="small-movie-card__image">
-        <VideoPlayer isPlaying={isPlaying} src={src} cover={cover} isMuted={true}/>
+        <VideoPlayer id={id} isMuted={true} isPlaying={false}/>
       </div>
       <h3 className="small-movie-card__title">
         <Link className="small-movie-card__link" to={`/films/${id}`}>

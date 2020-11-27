@@ -7,6 +7,8 @@ import {connect} from 'react-redux';
 
 
 const GenresList = ({activeGenre, onGenreChange}) => {
+  console.log(activeGenre);
+
   const genres = [`All genres`, ...getGenres(allFilms)];
 
   return (

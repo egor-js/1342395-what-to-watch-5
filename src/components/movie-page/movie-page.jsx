@@ -3,7 +3,7 @@ import {getYear} from "../../utils";
 import {Link} from 'react-router-dom';
 import Logo from "../logo/logo";
 import TabsSelect from "../tabs/tabs-select";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {Props} from "../../props";
 import MoviesList from "../movies-list/movies-list";
 import {films} from "../../mocks/films";
@@ -101,7 +101,7 @@ const MoviePage = ({id}) => {
 };
 
 MoviePage.propTypes = {
-  id: Props.film.id,
+  id: PropTypes.string.isRequired,
 };
 
 export default MoviePage;

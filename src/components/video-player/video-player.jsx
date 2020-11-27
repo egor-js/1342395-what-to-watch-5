@@ -18,7 +18,7 @@ export default class VideoPlayer extends PureComponent {
 
     video.muted = isMuted;
     video.src = src;
-    video.controls = !isMuted;
+    // video.controls = !isMuted;
     video.oncanplaythrough = () => this.setState({
       isLoading: false,
     });
@@ -61,6 +61,6 @@ export default class VideoPlayer extends PureComponent {
 }
 
 VideoPlayer.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
 };
