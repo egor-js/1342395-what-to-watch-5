@@ -20,7 +20,6 @@ export default class VideoPlayer extends PureComponent {
     video.oncanplaythrough = () => this.setState({
       isLoading: false,
     });
-
   }
 
   componentDidUpdate() {

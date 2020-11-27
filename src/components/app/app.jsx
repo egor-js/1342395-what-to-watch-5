@@ -10,6 +10,7 @@ import PlayerPage from "../player-page/player-page";
 import {Props} from "../../props";
 import {withVideoPlayer} from "../../hocs/with-video-player";
 
+
 const VideoPlayer = withVideoPlayer(PlayerPage);
 
 
@@ -33,23 +34,9 @@ const App = (props) => {
           exact
           render={({match}) => {
             const id = match.params.id;
-
-            const currentFilm = films.find((film) => film.id === id);
-            const filmReviews = reviews.filter((item) => {
-              return item.filmId === id;
-            });
-            const usersReviewers = filmReviews.map((review) => {
-              return users.find((user) => {
-                return user.id === review.userId;
-              });
-            });
-            const rating = filmReviews.reduce((sum, item) => sum + Number(item.stars), 0) / (filmReviews.length);
             return (
               <MoviePage
-                film={currentFilm}
-                users={usersReviewers}
-                reviews={filmReviews}
-                rating={rating}
+                id={id}
               />);
           }}
         />
@@ -58,11 +45,9 @@ const App = (props) => {
           exact
           render={({match}) => {
             const id = match.params.id;
-            const currentFilm = films.find((film) => film.id === id);
-
             return (
               <AddReview
-                film={currentFilm}
+                id ={id}
               />);
           }}
         />

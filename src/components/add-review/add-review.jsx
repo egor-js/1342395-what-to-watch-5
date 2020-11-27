@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import {Link} from 'react-router-dom';
 import {Props} from "../../props";
 import Logo from "../logo/logo";
+import {films} from "../../mocks/films";
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -32,10 +33,11 @@ class AddReview extends PureComponent {
 
 
   render() {
-    const {id, poster, cover, title} = this.props.film;
-
+    const {id} = this.props;
+    const currentFilm = films.find((film) => film.id === id);
     const starsCount = 5;
     const ratingStarsMarkup = [];
+    const {cover, title, poster} = currentFilm;
 
     for (let i = 1; i <= starsCount; i++) {
       const elementId = `star-${i}`;
@@ -109,7 +111,7 @@ class AddReview extends PureComponent {
 }
 
 AddReview.propTypes = {
-  film: Props.film,
+  id: Props.film.id,
 };
 
 export default AddReview;

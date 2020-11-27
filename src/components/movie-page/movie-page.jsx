@@ -3,17 +3,23 @@ import {getYear} from "../../utils";
 import {Link} from 'react-router-dom';
 import Logo from "../logo/logo";
 import TabsSelect from "../tabs/tabs-select";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {Props} from "../../props";
 import MoviesList from "../movies-list/movies-list";
+import {films} from "../../mocks/films";
+import {reviews} from "../../mocks/reviews";
+import {users} from "../../mocks/users";
 
-const MoviePage = (props) => {
-  const {id, title, genre, releaseDate} = props.film;
-  const reviews = props.reviews;
-  const users = props.users;
-  const rating = props.rating;
-  const releaseYear = getYear(releaseDate);
-
+const MoviePage = ({id}) => {
+  const currentFilm = films.find((film) => film.id === id);
+  const filmReviews = reviews.filter((item) => item.filmId === id);
+  const usersReviewers = filmReviews.map((review) => {
+    return users.find((user) => {
+      return user.id === review.userId;
+    });
+  });
+  const releaseYear = getYear(currentFilm.releaseDate);
+  const rating = filmReviews.reduce((sum, item) => sum + Number(item.stars), 0) / (filmReviews.length);
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -36,9 +42,9 @@ const MoviePage = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{currentFilm.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__genre">{currentFilm.genre}</span>
                 <span className="movie-card__year">{releaseYear}</span>
               </p>
 
@@ -52,7 +58,7 @@ const MoviePage = (props) => {
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <Link to={`/films/${id}/review`}>
-                      {title}
+                      {currentFilm.title}
                     </Link>
                   </svg>
                   <span>My list</span>
@@ -69,7 +75,7 @@ const MoviePage = (props) => {
               <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
             </div>
 
-            <TabsSelect rating={rating} filmReviews={reviews} film={props.film} users={users}/>
+            <TabsSelect rating={rating} filmReviews={filmReviews} film={currentFilm} users={usersReviewers}/>
           </div>
         </div>
       </section >
@@ -95,10 +101,7 @@ const MoviePage = (props) => {
 };
 
 MoviePage.propTypes = {
-  film: Props.film,
-  reviews: PropTypes.arrayOf(Props.review).isRequired,
-  users: PropTypes.arrayOf(Props.user).isRequired,
-  rating: PropTypes.number.isRequired,
+  id: Props.film.id,
 };
 
 export default MoviePage;
