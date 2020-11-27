@@ -1,9 +1,11 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
+import {films} from "../../mocks/films";
 
 export default class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
+    this.currentFilm = films.find((film) => film.id === props.id);
     this._videoRef = createRef();
     this.state = {
       isLoading: true,
@@ -11,7 +13,7 @@ export default class VideoPlayer extends PureComponent {
   }
 
   componentDidMount() {
-    const {src, isMuted = false} = this.props;
+    const {src, isMuted = false} = this.currentFilm;
     const video = this._videoRef.current;
 
     video.muted = isMuted;
@@ -45,9 +47,8 @@ export default class VideoPlayer extends PureComponent {
     }
   }
 
-
   render() {
-    const {src, cover} = this.props;
+    const {src, cover} = this.currentFilm;
     return (
       <video
         ref={this._videoRef}
@@ -60,8 +61,6 @@ export default class VideoPlayer extends PureComponent {
 }
 
 VideoPlayer.propTypes = {
-  src: PropTypes.string.isRequired,
-  cover: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   isPlaying: PropTypes.bool.isRequired,
-  isMuted: PropTypes.bool.isRequired,
 };

@@ -6,12 +6,13 @@ import AuthScreen from "../auth-screen/auth-screen";
 import MyList from "../my-list/my-list";
 import MoviePage from "../movie-page/movie-page";
 import AddReview from "../add-review/add-review";
-import PlayerPage from "../player-page/player-page";
+// import PlayerPage from "../player-page/player-page";
 import {Props} from "../../props";
-import {withVideoPlayer} from "../../hocs/with-video-player";
+import VideoPlayer from "../video-player/video-player";
+// import {withVideoPlayer} from "../../hocs/with-video-player";
 
 
-const VideoPlayer = withVideoPlayer(PlayerPage);
+// const VideoPlayer = withVideoPlayer(PlayerPage);
 
 
 const App = (props) => {
@@ -56,16 +57,13 @@ const App = (props) => {
           exact
           render={({match}) => {
             const id = match.params.id;
-            const currentFilm = films.find((film) => film.id === id);
-
             return (
               <VideoPlayer
-                film={currentFilm}
+                id={id}
+                isPlaying={true}
               />);
           }}
         />
-
-
       </Switch>
     </BrowserRouter>
   );
