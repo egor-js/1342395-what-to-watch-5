@@ -28,8 +28,8 @@ const TabsOverview = (props) => {
 
 TabsOverview.propTypes = {
   film: Props.film,
-  rating: PropTypes.string.isRequired,
-  ratings: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  ratings: PropTypes.number.isRequired,
 };
 
 export default TabsOverview;
