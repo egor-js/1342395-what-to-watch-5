@@ -9,7 +9,7 @@ const TabsOverview = (props) => {
   return (
     <React.Fragment>
       <div className="movie-rating">
-        <div className="movie-rating__score">{rating}</div>
+        <div className="movie-rating__score">{rating ? rating : `-`}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{ratingWord(rating)}</span>
           <span className="movie-rating__count">{ratings} ratings</span>

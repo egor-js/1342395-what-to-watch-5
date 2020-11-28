@@ -9,7 +9,9 @@ export const extend = (a, b) => {
 };
 
 export const ratingWord = (val) => {
-  if (val >= 0 && val < 3) {
+  if (val === 0) {
+    return `Nothing`;
+  } else if (val >= 0 && val < 3) {
     return `Bad`;
   } else if (val >= 3 && val < 5) {
     return `Normal`;

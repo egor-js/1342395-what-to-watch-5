@@ -7,10 +7,10 @@ import GenresList from "../genres-list/genres-list";
 import {connect} from "react-redux";
 import {Props} from "../../props";
 
-const FIRST_FILM_FROM_LIST = 0;
+const FIRST_FILM_INDEX = 0;
 
 const Main = ({filmsByGenre = []}) => {
-  const {title, genre, releaseDate, cover} = filmsByGenre[FIRST_FILM_FROM_LIST];
+  const {title, genre, releaseDate, cover} = filmsByGenre[FIRST_FILM_INDEX];
   const releaseYear = getYear(releaseDate);
 
   return (

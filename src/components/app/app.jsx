@@ -10,6 +10,7 @@ import AddReview from "../add-review/add-review";
 import {Props} from "../../props";
 import VideoPlayer from "../video-player/video-player";
 // import {withVideoPlayer} from "../../hocs/with-video-player";
+import PageNotFound from "../page-not-found/page-not-found";
 
 
 // const VideoPlayer = withVideoPlayer(PlayerPage);
@@ -51,18 +52,9 @@ const App = () => {
               />);
           }}
         />
-        <Route
-          path="/player/:id"
-          exact
-          render={({match}) => {
-            const id = match.params.id;
-            return (
-              <VideoPlayer
-                id={id}
-                isPlaying={true}
-              />);
-          }}
-        />
+        <Route>
+          <PageNotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
